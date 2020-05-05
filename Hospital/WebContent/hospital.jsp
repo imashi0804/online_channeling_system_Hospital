@@ -21,7 +21,7 @@
 					<div class="panel-title">Hospital management</div>
 				</div>
 				<div class="panel-body">
-					<form id="signupform" class="form-horizontal" role="form">
+					<form id="detailform" class="form-horizontal" role="form">
 
 						<div id="alertSuccess" class="alert alert-success"></div>
 

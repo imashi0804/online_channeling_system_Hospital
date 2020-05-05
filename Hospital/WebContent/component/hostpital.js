@@ -1,10 +1,10 @@
 $(document).on("click", ".btnUpdate", function(event) { 
 	
-	$("#hidItemIDSave").val($(this).closest("tr").find('#hidItemIdUpdate').val());
-	$("#hostpitalName").val($(this).closest("tr").find('#hidhidUpdate').val());
-	$("#docterName").val($(this).closest("tr").find('#hiddidUpdate').val());
-	$("#description").val($(this).closest("tr").find('td:eq(5)').text());
-	$("#date").val($(this).closest("tr").find('td:eq(1)').text());
+	$("#hospitalName").val($(this).closest("tr").find('#hidItemIdUpdate').val());
+	$("#hospitalAddress").val($(this).closest("tr").find('#hidhidUpdate').val());
+	$("#phone").val($(this).closest("tr").find('#hiddidUpdate').val());
+	$("#hospitalEmail").val($(this).closest("tr").find('td:eq(5)').text());
+	$("#password").val($(this).closest("tr").find('td:eq(1)').text());
 
 	
 	$("#alertSuccess").text().trim() == "Data Retrived"
