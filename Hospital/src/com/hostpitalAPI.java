@@ -63,12 +63,14 @@ public class hostpitalAPI extends HttpServlet {
 		//System.out.println(decodedStr);
 		Map paras = getParasMap(request);	
 		System.out.println(paras);
-		hospitalDeo.setHospitalName(paras.get("hospitalName").toString());
-		hospitalDeo.setHospitalAddress(paras.get("hospitalAddress").toString());
+		String hospitalName = URLDecoder.decode(paras.get("hospitalName").toString(), "UTF-8");
+		String hospitalAddress = URLDecoder.decode(paras.get("hospitalAddress").toString(), "UTF-8");
+		hospitalDeo.setHospitalName(hospitalName);
+		hospitalDeo.setHospitalAddress(hospitalAddress);
 		hospitalDeo.setPhone(paras.get("phone").toString());
 		
 		
-		String decodedEmail = URLDecoder.decode(paras.get("hospitalEmail").toString(), "UTF-8"); // Email decoder
+		String decodedEmail = URLDecoder.decode(paras.get("hospitalEmail").toString(), "UTF-8");
 		hospitalDeo.setHospitalEmail(decodedEmail);
 		
 		

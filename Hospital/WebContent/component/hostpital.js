@@ -88,7 +88,7 @@ function onItemSaveComplete(response, status) {
 	 }
 	
 	$("#hidItemIDSave").val(""); 
-	$("#form")[0].reset(); 
+	$("#detailform")[0].reset(); 
 }
 
 

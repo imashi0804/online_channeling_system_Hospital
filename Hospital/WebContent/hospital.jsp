@@ -30,7 +30,7 @@
 								<h6>Hospital Name</h6> </label>
 							<div class="col-md-9">
 								<input type="text" class="form-control" name="hospitalName"
-									placeholder="Last Name" id="hospitalName">
+									placeholder="Hospital Name" id="hospitalName">
 							</div>
 						</div>
 
@@ -40,7 +40,7 @@
 								Address</h6></label>
 							<div class="col-md-9">
 								<input type="text" class="form-control" name="hospitalAddress"
-									placeholder="Last Name" id="hospitalAddress">
+									placeholder="Hospital address" id="hospitalAddress">
 							</div>
 						</div>
 
