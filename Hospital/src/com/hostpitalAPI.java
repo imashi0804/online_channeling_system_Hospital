@@ -1,6 +1,7 @@
 package com;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -57,12 +58,20 @@ public class hostpitalAPI extends HttpServlet {
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		hospitalDeo hospitalDeo = new hospitalDeo();
-		Map paras = getParasMap(request);	
+		System.out.println(request);
 		
+		//System.out.println(decodedStr);
+		Map paras = getParasMap(request);	
+		System.out.println(paras);
 		hospitalDeo.setHospitalName(paras.get("hospitalName").toString());
 		hospitalDeo.setHospitalAddress(paras.get("hospitalAddress").toString());
 		hospitalDeo.setPhone(paras.get("phone").toString());
-		hospitalDeo.setHospitalEmail(paras.get("hospitalEmail").toString());
+		
+		
+		String decodedEmail = URLDecoder.decode(paras.get("hospitalEmail").toString(), "UTF-8"); // Email decoder
+		hospitalDeo.setHospitalEmail(decodedEmail);
+		
+		
 		hospitalDeo.setPassword(paras.get("password").toString());
 		hospitalDeo.setHospitalId(Integer.parseInt(paras.get("HospitalId").toString()));
 		String	 output = hostpitalmod.updateHospitalDetails(hospitalDeo);
@@ -73,7 +82,12 @@ public class hostpitalAPI extends HttpServlet {
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Map paras = getParasMap(request);
+		System.out.println(paras);
+		hospitalDeo hospitalDeo = new hospitalDeo();
+		hospitalDeo.setHospitalId(Integer.parseInt(paras.get("HospitalId").toString()));
+		String	 output = hostpitalmod.deletehospital(hospitalDeo);
+		response.getWriter().write(output);
 	}
 	
 private static Map getParasMap(HttpServletRequest request) { 
@@ -91,6 +105,7 @@ private static Map getParasMap(HttpServletRequest request) {
 			for (String param : params) {
 				String[] p = param.split("=");    
 				map.put(p[0], p[1]); 
+				
 			}
 		}
 		catch (Exception e) {

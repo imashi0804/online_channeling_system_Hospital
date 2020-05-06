@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
+
 public class hospital {
 	private Connection connect() {
 		Connection connection = null;
@@ -48,13 +50,18 @@ public String addnewhospital(hospitalDeo hospitaldata) {
 	} catch (Exception e) {
 		System.out.println(e.getMessage());
 	}
-		return output;
+	String newRead = getHospitalDetails();
+	JsonObject jsonObject = new JsonObject();
+	jsonObject.addProperty("status", "success");
+	jsonObject.addProperty("data", newRead);
+	return jsonObject.toString();
 	}
 
 public String getHospitalDetails() {
 	
 	String output = "";
-	 output = "<table border=\'1\'>"
+	 output = "<table class=\"table\">"
+			+ "<thead>"
 	 		+ "<tr>"
 	 		+ "<th>hospital Id</th>"
 	 		+ "<th>hospital Name</th>"
@@ -64,7 +71,8 @@ public String getHospitalDetails() {
 	 		+ "<th>Password</th>"
 	 		+ "<th>Update</th>"
 	 		+ "<th>Remove</th>"
-	 		+ "</tr>";
+	 		+ "</tr>"
+	 		+ "</thead>";
 
 	try {
 		Connection con = connect();
@@ -94,7 +102,7 @@ public String getHospitalDetails() {
 			 output += "<td>" + Password + "</td>";
 			 
 			 output += "<td><input name=\"btnUpdate\" type=\"button\"value=\"Update\" class=\"btnUpdate btn btn-secondary\"></td>"
-						+ "<td><input name=\"btnRemove\" data-appid='"+HospitalId+"'type=\"submit\" value=\"Remove\"class=\"btnRemove btn btn-danger\"></td></tr>";
+						+ "<td><button name=\"btnRemove\" data-appid='"+HospitalId+"'type=\"submit\" value=\""+HospitalId+"\"class=\"btnRemove btn btn-danger\">Remove</button></td></tr>";
 			
 		}
 		con.close();
@@ -134,8 +142,11 @@ public String updateHospitalDetails(hospitalDeo hospitalDeo) {
 	} catch (Exception e) {
 		System.out.println(e.getMessage());
 	}
-
-	return output;
+	String newRead = getHospitalDetails();
+	JsonObject jsonObject = new JsonObject();
+	jsonObject.addProperty("status", "success");
+	jsonObject.addProperty("data", newRead);
+	return jsonObject.toString();
 	}
 
 public String deletehospital(hospitalDeo hospitalDeo) {
@@ -163,7 +174,10 @@ public String deletehospital(hospitalDeo hospitalDeo) {
 	} catch (Exception e) {
 		System.out.println(e.getMessage());
 	}
-
-	return output;
+	String newRead = getHospitalDetails();
+	JsonObject jsonObject = new JsonObject();
+	jsonObject.addProperty("status", "success");
+	jsonObject.addProperty("data", newRead);
+	return jsonObject.toString();
 }
 }

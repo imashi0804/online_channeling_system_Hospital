@@ -1,10 +1,11 @@
 $(document).on("click", ".btnUpdate", function(event) { 
 	
-	$("#hospitalName").val($(this).closest("tr").find('#hidItemIdUpdate').val());
-	$("#hospitalAddress").val($(this).closest("tr").find('#hidhidUpdate').val());
-	$("#phone").val($(this).closest("tr").find('#hiddidUpdate').val());
-	$("#hospitalEmail").val($(this).closest("tr").find('td:eq(5)').text());
-	$("#password").val($(this).closest("tr").find('td:eq(1)').text());
+	$("#hidItemIDSave").val($(this).closest("tr").find('#hidItemIdUpdate').val());
+	$("#hospitalName").val($(this).closest("tr").find('td:eq(1)').text());
+	$("#hospitalAddress").val($(this).closest("tr").find('td:eq(2)').text());
+	$("#phone").val($(this).closest("tr").find('td:eq(3)').text());
+	$("#hospitalEmail").val($(this).closest("tr").find('td:eq(4)').text());
+	$("#password").val($(this).closest("tr").find('td:eq(5)').text());
 
 	
 	$("#alertSuccess").text().trim() == "Data Retrived"
@@ -23,7 +24,6 @@ $(document).ready(function() {
 	if($("#alertSuccess").text().trim() == ""){
 		$("#alertSuccess").hide();
 	}
-	
 	$("#alertError").hide(); 
 	
 });
@@ -98,7 +98,7 @@ $(document).on("click", ".btnRemove", function(event) {
 	$.ajax( { 
 		url : "hostpitalAPI",   
 		type : "DELETE",   
-		data : "AppointmentID =" + $(this).data("itemid"),   
+		data : "HospitalId=" + $(this).val(),   
 		dataType : "text",   
 		complete : function(response, status) 
 		{   
@@ -147,26 +147,29 @@ function onItemDeleteComplete(response, status) {
 
 function validateItemForm() {  
 	
-	if ($("#docterName").val().trim() == 0) {  
+	if ($("#hospitalName").val().trim() == "") {  
 		
-		return "Please Select a docter";
+		return "Please enter hospital name";
 	} 
 	
-	if ($("#hostpitalName").val().trim() == 0) {  
+	if ($("#hospitalAddress").val().trim() == "") {  
 		 
-		return "Please Select a hostpital";
+		return "Please Enter hospital addres";
+	} 
+	var phone =$("#phone").val().trim();
+	if (phone == "") {  
+
+	return "Please Enter valid phone number";
 	} 
 	
-	if ($("#description").val().trim() == "") {  
+	if ($("#hospitalEmail").val().trim() == "") {  
 
-	return "Please Enter description";
+		return "Please enter email";
 	} 
-	
-	if ($("#date").val().trim() == "dd/mm/yyyy") {  
+	if ($("#password").val().trim() == "") {  
 
-		return "Please Select Preferd Date";
+		return "Please Enter password";
 	} 
-
 	
 	
 	return true; 
